@@ -1,0 +1,177 @@
+/*
+  DEFAULT CSS
+ */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: #444;
+}
+/*
+This was Created by Chad Trikyas Mooney
+
+"Financial status, should not shape a persons education"
+
+~ Trikyas
+### A quick explanation of the fraction unit
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+CSS grid has 2 additional measurement units and tools you can use.
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#1
+## The fraction unit
+    1fr
+
+  The fraction unit is pretty straight forward.
+  For example, to create 2 equal columns:
+
+  grid-template-columns: 50% 50%;
+  ||
+  Is the same as:
+  ||
+  grid-template-columns: 1fr 1fr;
+
+  1fr = 1 equal fraction
+  2fr = 2 equal fractions
+  3fr = 3 equal fractions
+
+  You can also do something crazy like this:
+
+  grid-template-columns: 5em 1fr 1fr;
+  ||
+  1 column is 5em wide and then there are 2 equal fractions
+
+  If I set 1fr 2fr I am in affect splitting it into 3 sections and then saying
+  in the first column have 1 fraction and in the second column have 2 fractions.
+  Which results in something more accurate than using 33.3333333% and doing this 3 times.
+  –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+  #2
+  ## The minmax() function
+      minmax(10em, 20em)
+
+      The minmax() function defines a size range:
+      greater than
+      equal to min
+      endless
+      equal to max
+
+      grid-template-columns: 1fr minmax(10em, 20em) 1fr;
+
+      This is especially useful and responsive of design because we can say things like this column should never be narrower than 20 ems and never wider than 30 ems. This is similar to min width and max width, but within the context of columns and rows, this will allow us to create truly responsive layouts with CSS grid.
+  ## The repeat() Notation
+      If you're creating a list of similar columns, there's a shorthand method using the repeat() notation. Let's say you want four columns of 1fr. Well, instead of typing out 1fr 1fr 1fr 1fr. you can just say repeat(4, 1fr). This repeats one FR four times. You can also do this with more advanced combinations, say repeat(4, 1fr 10px) which gives you eight columns, alternating between 1fr and 10 pixels in the width.
+
+You can see what that looks like by using this.
+
+grid-template-columns: repeat(4, 1fr 10px);
+
+NOTE
+all this works exactly the same way for rows, giving you full control over every aspect of how your grid is laid out.
+
+# Columns.Example {
+       grid-template-columns: 1fr minmax(10em, 20em) 1fr;
+     }
+
+# Rows.Example {
+       grid-template-rows: 1fr minmax(10em, 20em) 1fr;
+     }
+ –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+]*/
+
+
+/*
+.site {
+  display: grid;
+  /*grid-template-columns: 1fr 1fr;*/
+  /*grid-template-columns: [main-start] 2fr [main-end] 1fr [sidebar-start] 1fr [sidebar-end];
+  grid-template-rows: auto 1fr 3fr;
+}
+.masthead {
+  grid-column: main-end/sidebar-end;
+  grid-row: 2/3;
+}
+.page-title {
+  grid-column: main/sidebar;
+  grid-row: 1/2;
+}
+.main-content {
+  grid-column: main;
+  grid-row: 2/4;
+}
+.sidebar {
+  grid-column: 2/4;
+  grid-row: 3/4;
+}
+.footer-content {
+  grid-column: 1/4;
+  grid-row: 4;
+}*/
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+CSS grid areas
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+
+.site {
+  display: grid;
+  /*
+  grid-template-columns: 2fr 1fr 1fr;
+  */
+  grid-template-rows: auto 1fr 3fr;
+  grid-template-areas:
+  "title title"
+  "main masthead"
+  "main sidebar"
+  "footer footer";
+}
+.masthead {
+  grid-area: masthead;
+}
+.page-title {
+  grid-area: title;
+}
+.main-content {
+  grid-area: main;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.footer-content {
+  grid-area: footer;
+}
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+CSS gaps ––> not margin:
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+.site {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 3fr;
+  grid-template-areas:
+  "title title"
+  "main masthead"
+  "main sidebar"
+  "footer footer";
+  /*css grid gap*/
+  grid-gap: 1em;
+  grid-column-gap: 1em;
+  grid-row-gap: .5em;
+
+}
+
+/*
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+Making it Responsive, Is easier and so much faster
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+*/
+@media screen and (min-width: 600px) {
+  .site {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas:
+    "title title title"
+    "main masthead masthead"
+    "main sidebar footer";
+  }
+}

@@ -210,7 +210,8 @@ img {
 /* Buckets section */
 
 .buckets {
-	padding: 2em 1em 1em;background: hsl(0, 0%, 10%);
+	padding: 2em 1em 1em;
+	background: hsl(0, 0%, 10%);
 }
 
 .buckets ul {
